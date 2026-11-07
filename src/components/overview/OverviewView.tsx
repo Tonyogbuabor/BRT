@@ -9,7 +9,8 @@ import {
   AlertCircle,
   Users,
   Shield,
-  FileSpreadsheet
+  FileSpreadsheet,
+  Calculator
 } from 'lucide-react';
 import { NavPage } from '../common/Sidebar';
 import { CustomerRecord, ModelCard, ValidationReport } from '../../types/schema';
@@ -116,17 +117,24 @@ export const OverviewView: React.FC<OverviewViewProps> = ({
               <>
                 <button
                   onClick={() => onNavigate('dashboard')}
-                  className="px-5 py-2.5 rounded-lg text-xs font-semibold text-[#0B1F3A] bg-[#C9A227] hover:bg-[#E5C566] transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
+                  className="px-4 py-2.5 rounded-lg text-xs font-semibold text-[#0B1F3A] bg-[#C9A227] hover:bg-[#E5C566] transition-colors shadow-sm flex items-center gap-2 cursor-pointer"
                 >
                   <TrendingDown className="w-4 h-4" />
-                  <span>Open Executive Dashboard</span>
+                  <span>Executive Dashboard</span>
                 </button>
                 <button
-                  onClick={() => onNavigate('scoring')}
-                  className="px-5 py-2.5 rounded-lg text-xs font-medium text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors flex items-center gap-2 cursor-pointer"
+                  onClick={() => onNavigate('executive-summary')}
+                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors flex items-center gap-2 cursor-pointer"
                 >
-                  <Users className="w-4 h-4 text-[#E5C566]" />
-                  <span>Search Customer 360</span>
+                  <FileSpreadsheet className="w-4 h-4 text-[#E5C566]" />
+                  <span>Detailed Executive Summary</span>
+                </button>
+                <button
+                  onClick={() => onNavigate('risk-calculator')}
+                  className="px-4 py-2.5 rounded-lg text-xs font-medium text-white bg-white/10 hover:bg-white/20 border border-white/20 transition-colors flex items-center gap-2 cursor-pointer"
+                >
+                  <Calculator className="w-4 h-4 text-[#E5C566]" />
+                  <span>Risk Score Calculator</span>
                 </button>
               </>
             )}

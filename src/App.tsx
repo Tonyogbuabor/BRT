@@ -16,6 +16,8 @@ import { ModelStudioView } from './components/models/ModelStudioView';
 import { ReportsView } from './components/reports/ReportsView';
 import { SettingsView } from './components/settings/SettingsView';
 import { AiChatbotModal } from './components/ai/AiChatbotModal';
+import { RiskScoreCalculatorView } from './components/calculator/RiskScoreCalculatorView';
+import { DetailedExecutiveSummaryView } from './components/summary/DetailedExecutiveSummaryView';
 
 import {
   CustomerRecord,
@@ -544,6 +546,31 @@ export default function App() {
                 aiSummary={aiSummary}
                 onRegenerateAiSummary={handleRegenerateAiSummary}
                 isAiLoading={isAiLoading}
+                onNavigateToSummary={() => setActivePage('executive-summary')}
+                onNavigateToCalculator={() => setActivePage('risk-calculator')}
+              />
+            )}
+
+            {activePage === 'executive-summary' && (
+              <DetailedExecutiveSummaryView
+                kpis={kpis}
+                records={filteredRecords}
+                scoredCustomers={filteredScored}
+                assumptions={assumptions}
+                aiSummary={aiSummary}
+                onNavigateToCalculator={() => setActivePage('risk-calculator')}
+                onNavigateToCampaigns={() => setActivePage('campaigns')}
+              />
+            )}
+
+            {activePage === 'risk-calculator' && (
+              <RiskScoreCalculatorView
+                records={filteredRecords}
+                scoredCustomers={filteredScored}
+                activeModel={trainedWeights}
+                kpis={kpis}
+                assumptions={assumptions}
+                onSelectCustomer360={(c) => setSelectedCustomer360(c)}
               />
             )}
 

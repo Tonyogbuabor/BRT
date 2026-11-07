@@ -15,7 +15,9 @@ import {
   ChevronLeft,
   ChevronRight,
   ShieldCheck,
-  Bot
+  Bot,
+  Calculator,
+  FileSpreadsheet
 } from 'lucide-react';
 
 export type NavPage =
@@ -23,6 +25,8 @@ export type NavPage =
   | 'upload'
   | 'quality'
   | 'dashboard'
+  | 'executive-summary'
+  | 'risk-calculator'
   | 'drivers'
   | 'segmentation'
   | 'scoring'
@@ -71,6 +75,8 @@ export const Sidebar: React.FC<SidebarProps> = ({
       title: 'Intelligence',
       items: [
         { id: 'dashboard', label: 'Executive Dashboard', icon: TrendingDown, requiresData: true },
+        { id: 'executive-summary', label: 'Executive Summary', icon: FileSpreadsheet, requiresData: true },
+        { id: 'risk-calculator', label: 'Risk Calculator', icon: Calculator, requiresData: true },
         { id: 'drivers', label: 'Churn Drivers', icon: Activity, requiresData: true },
         { id: 'segmentation', label: 'Customer Segments', icon: Users, requiresData: true },
         { id: 'scoring', label: 'Customer 360 & Scores', icon: Search, requiresData: true }

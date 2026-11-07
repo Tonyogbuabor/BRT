@@ -7,7 +7,10 @@ import {
   Check,
   RotateCw,
   HelpCircle,
-  FileText
+  FileText,
+  Calculator,
+  FileSpreadsheet,
+  ArrowRight
 } from 'lucide-react';
 import {
   BarChart,
@@ -32,6 +35,8 @@ interface ExecutiveDashboardViewProps {
   aiSummary: string[];
   onRegenerateAiSummary: () => void;
   isAiLoading: boolean;
+  onNavigateToSummary?: () => void;
+  onNavigateToCalculator?: () => void;
 }
 
 export const ExecutiveDashboardView: React.FC<ExecutiveDashboardViewProps> = ({
@@ -40,7 +45,9 @@ export const ExecutiveDashboardView: React.FC<ExecutiveDashboardViewProps> = ({
   scoredCustomers,
   aiSummary,
   onRegenerateAiSummary,
-  isAiLoading
+  isAiLoading,
+  onNavigateToSummary,
+  onNavigateToCalculator
 }) => {
   const [copied, setCopied] = useState(false);
 
@@ -139,16 +146,33 @@ export const ExecutiveDashboardView: React.FC<ExecutiveDashboardViewProps> = ({
     <div className="space-y-8 max-w-7xl mx-auto">
       {/* Risk Score Intelligence & Tier Tracking Command Bar */}
       <div className="space-y-2.5">
-        <div className="flex items-center justify-between">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div className="flex items-center gap-2">
             <ShieldAlert className="w-4 h-4 text-[#7A0C1E] dark:text-[#E5C566]" />
             <h2 className="text-sm font-bold uppercase tracking-wider text-slate-800 dark:text-slate-100">
               Customer Risk Score Intelligence & Cohort Tracking
             </h2>
           </div>
-          <span className="text-xs text-slate-500 dark:text-slate-400">
-            Portfolio Avg Risk Score: <strong className="font-mono-tabular text-slate-900 dark:text-white">{kpis.portfolioAvgRiskScore}%</strong> across {kpis.activeCustomers.toLocaleString()} active accounts
-          </span>
+          <div className="flex items-center gap-2">
+            {onNavigateToSummary && (
+              <button
+                onClick={onNavigateToSummary}
+                className="px-2.5 py-1 text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 hover:border-[#C9A227] text-slate-700 dark:text-slate-200 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+              >
+                <FileSpreadsheet className="w-3.5 h-3.5 text-[#C9A227]" />
+                Detailed Executive Summary
+              </button>
+            )}
+            {onNavigateToCalculator && (
+              <button
+                onClick={onNavigateToCalculator}
+                className="px-2.5 py-1 text-xs font-semibold bg-[#0B1F3A] hover:bg-[#12305A] text-white rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer shadow-2xs"
+              >
+                <Calculator className="w-3.5 h-3.5 text-[#E5C566]" />
+                Risk Score Calculator
+              </button>
+            )}
+          </div>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
