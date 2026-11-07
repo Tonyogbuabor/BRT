@@ -1,0 +1,81 @@
+@import "tailwindcss";
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --navy-deep: #0B1F3A;
+    --navy-mid: #12305A;
+    --navy-light: #1D4C8F;
+    --gold-primary: #C9A227;
+    --gold-light: #E5C566;
+    --gold-dark: #8F7218;
+    --red-primary: #7A0C1E;
+    --red-mid: #A3152B;
+    --red-deep: #4D0612;
+    --neutral-bg: #F5F6F8;
+    --neutral-card: #FFFFFF;
+    --neutral-text: #1A2233;
+    --neutral-muted: #5B6575;
+    --neutral-border: #E3E7EE;
+  }
+
+  .dark {
+    --navy-deep: #050E1A;
+    --navy-mid: #0B1F3A;
+    --navy-light: #12305A;
+    --gold-primary: #E5C566;
+    --gold-light: #F3DC95;
+    --gold-dark: #C9A227;
+    --red-primary: #A3152B;
+    --red-mid: #C8233D;
+    --red-deep: #7A0C1E;
+    --neutral-bg: #070F1C;
+    --neutral-card: #0D1C30;
+    --neutral-text: #E9EDF5;
+    --neutral-muted: #94A3B8;
+    --neutral-border: #1E3452;
+  }
+
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
+  h1, h2, h3, .font-serif-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+  }
+
+  .font-mono-tabular {
+    font-family: 'JetBrains Mono', monospace;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #334155;
+}
+
+/* Print utilities for professional reporting */
+@media print {
+  aside, nav, button, .no-print {
+    display: none !important;
+  }
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+  }
+  .print-break-inside {
+    break-inside: avoid;
+  }
+}
